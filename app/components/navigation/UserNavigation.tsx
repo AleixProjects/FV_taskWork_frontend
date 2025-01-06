@@ -17,7 +17,8 @@ import { NavLink } from "@remix-run/react";
 
 const brandName = process.env.BRAND_NAME;
 
-export function BaseNavigation() {
+export function UserNavigation() {
+
   return (
     <>
       <button
@@ -71,6 +72,33 @@ export function BaseNavigation() {
               >
                 <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Works</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/staff"
+                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <HiUsers className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <span className="ml-3">Staff</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/materials"
+                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <HiViewGrid className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <span className="ml-3">Materials</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/clients"
+                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <HiMiniUserGroup className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <span className="ml-3">Clients</span>
               </NavLink>
             </li>
           </ul>
