@@ -18,7 +18,6 @@ import { NavLink } from "@remix-run/react";
 const brandName = process.env.BRAND_NAME;
 
 export function UserNavigation() {
-
   return (
     <>
       <button
@@ -58,8 +57,14 @@ export function UserNavigation() {
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <NavLink
-                to="/"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                to="/dashboard"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiChartPie className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Dashboard</span>
@@ -67,17 +72,29 @@ export function UserNavigation() {
             </li>
             <li>
               <NavLink
-                to="/works"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                to="/tasks"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Works</span>
+                <span className="ml-3">Tasks</span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/staff"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiUsers className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Staff</span>
@@ -86,7 +103,13 @@ export function UserNavigation() {
             <li>
               <NavLink
                 to="/materials"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiViewGrid className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Materials</span>
@@ -95,7 +118,13 @@ export function UserNavigation() {
             <li>
               <NavLink
                 to="/clients"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiMiniUserGroup className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Clients</span>
@@ -105,26 +134,14 @@ export function UserNavigation() {
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <NavLink
-                to="/auth"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiArrowSmRight className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Sign In</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/auth"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiArrowDownOnSquare className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Sign Up</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/profile"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiUser className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Profile</span>
@@ -133,7 +150,13 @@ export function UserNavigation() {
             <li>
               <NavLink
                 to="/settings"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <BiBrightness className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Settings</span>
@@ -142,7 +165,13 @@ export function UserNavigation() {
             <li>
               <NavLink
                 to="/logout"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
                 <HiArrowLeftEndOnRectangle className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Log Out</span>
@@ -237,7 +266,7 @@ export function UserNavigation() {
             </svg>
           </button>
           <div
-            className={`z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}
+            className={`z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 hidden`}
             id="language-dropdown"
           >
             <ul className="py-1" role="none">

@@ -57,20 +57,32 @@ export function BaseNavigation() {
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <NavLink
-                to="/"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                to="/dashboard"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
-                <HiChartPie className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <HiChartPie className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Dashboard</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/works"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                to="/tasks"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
-                <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Works</span>
+                <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <span className="ml-3">Tasks</span>
               </NavLink>
             </li>
           </ul>
@@ -78,46 +90,16 @@ export function BaseNavigation() {
             <li>
               <NavLink
                 to="/auth"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className={({ isActive }) =>
+                  `flex items-center p-2 text-base font-normal rounded-lg group ${
+                    isActive
+                      ? "text-white bg-gray-900 dark:bg-gray-700"
+                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`
+                }
               >
-                <HiArrowSmRight className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Sign In</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/auth"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiArrowDownOnSquare className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Sign Up</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/profile"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiUser className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Profile</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/settings"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <BiBrightness className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Settings</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/logout"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiArrowLeftEndOnRectangle className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Log Out</span>
+                <HiArrowSmRight className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <span className="ml-3">Enter</span>
               </NavLink>
             </li>
           </ul>
@@ -167,7 +149,7 @@ export function BaseNavigation() {
           <button
             type="button"
             data-dropdown-toggle="language-dropdown"
-            className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            className="hidden inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
           >
             <svg
               aria-hidden="true"
@@ -209,7 +191,7 @@ export function BaseNavigation() {
             </svg>
           </button>
           <div
-            className={`z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}
+            className={`z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 hidden`}
             id="language-dropdown"
           >
             <ul className="py-1" role="none">
