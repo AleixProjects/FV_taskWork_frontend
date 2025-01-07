@@ -12,7 +12,7 @@ import "./tailwind.css";
 const brandName = process.env.BRAND_NAME || "NotTitle";
 
 export const meta: MetaFunction = () => {
-  console.log("brandName", brandName);
+  // console.log("brandName", brandName);
   return [
     { title: {brandName} },
   ];

@@ -54,38 +54,7 @@ export function BaseNavigation() {
               <img src="brand/logo_FV.png" alt={brandName}></img>
             </li>
           </ul>
-          <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-            <li>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  `flex items-center p-2 text-base font-normal rounded-lg group ${
-                    isActive
-                      ? "text-white bg-gray-900 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`
-                }
-              >
-                <HiChartPie className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Dashboard</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/tasks"
-                className={({ isActive }) =>
-                  `flex items-center p-2 text-base font-normal rounded-lg group ${
-                    isActive
-                      ? "text-white bg-gray-900 dark:bg-gray-700"
-                      : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-                  }`
-                }
-              >
-                <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
-                <span className="ml-3">Tasks</span>
-              </NavLink>
-            </li>
-          </ul>
+          
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <NavLink

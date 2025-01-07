@@ -51,6 +51,7 @@ function AuthForm() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
@@ -64,10 +65,18 @@ function AuthForm() {
           </label>
           <input
             id="password"
+            name="password"
             type="password"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
         </div>
+        {validationErrors && (
+          <div className="text-red-500 text-sm mt-2">
+            {Object.values(validationErrors).map((error) => (
+              <div key={error}>{error}</div>
+            ))}
+          </div>
+        )}
         <div className="flex items-center justify-between">
           <button
             disabled={isSubmitting}
