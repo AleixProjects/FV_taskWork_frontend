@@ -1,11 +1,13 @@
+import { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { Button } from "flowbite-react";
 import { MdAddToPhotos } from "react-icons/md";
 import { StaffList } from "~/components/workers/StaffList";
+import { getWorkers } from "~/data/workers.server";
 import { Worker } from "~/types/interfaces";
 
 export default function Staff() {
-  const staff: Worker[] = useLoaderData() as Worker[];
+  const workers: Worker[] = useLoaderData() as Worker[];
   return (
     <>
       <Outlet />
@@ -18,10 +20,14 @@ export default function Staff() {
             </Button>
           </div>
           <div className="w-full h-4/5 bg-white rounded-lg shadow-md p-4">
-            <StaffList staff={staff} />
+            <StaffList workers={workers} />
           </div>
         </div>
       </div>
     </>
   );
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  return await getWorkers(request);
 }

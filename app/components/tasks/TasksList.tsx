@@ -1,19 +1,28 @@
-import Modal from "app/components/Utils/Modal";
-
 import { Button, Table } from "flowbite-react";
 import { Task, RequestData } from "~/types/interfaces";
-import { FaEdit, FaEye } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { StatusTag } from "./StatusTag";
-import { useState } from "react";
-import { TaskDetail } from "./TaskDetail";
-import { Link, useNavigate } from "@remix-run/react";
+import { useLoaderData, Link } from "@remix-run/react";
+import { LoaderFunction } from "@remix-run/node";
+
+import { deleteTask } from "~/data/tasks.server";
+import { getToken } from "~/data/auth.server";
+// import { deleteTask } from "~/data/tasks.server";
 
 interface DataTask {
   tasks: RequestData;
 }
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const token = await getToken(request);
+  console.log(token);
+  return token;
+};
+
 export function TasksList({ tasks }: DataTask) {
+  const { token }: string = useLoaderData();
+  // console.log(tasks.data);
   return (
     <div className="h-full w-full overflow-x-auto overflow-y-auto">
       <Table striped hoverable>
@@ -51,6 +60,7 @@ export function TasksList({ tasks }: DataTask) {
                   <Button
                     color="failure"
                     className="w-8 h-8 flex items-center justify-center"
+                    // onClick={deleteTask(task.id, token)}
                   >
                     <AiFillDelete />
                   </Button>
