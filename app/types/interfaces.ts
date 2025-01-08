@@ -11,9 +11,9 @@ export interface Task {
   id: string;
   name: string;
   description: string;
-  startDate: string;
-  endDate: string;
-  totalHours: number;
+  start_date: string;
+  end_date: string;
+  total_time: number;
   status: string;
   client?: Client;
   workers?: Worker[];

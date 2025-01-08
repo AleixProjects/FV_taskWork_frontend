@@ -1,15 +1,22 @@
+import Modal from "app/components/Utils/Modal";
+
 import { Button, Table } from "flowbite-react";
 import { Task, RequestData } from "~/types/interfaces";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEye } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { StatusTag } from "./StatusTag";
+import { useState } from "react";
+import { TaskDetail } from "./TaskDetail";
+import { Link, useNavigate } from "@remix-run/react";
 
-export function TasksList({ tasks }: RequestData) {
-  //   console.log(tasks);
-  //   const tasks: Task[] = request.data;
+interface DataTask {
+  tasks: RequestData;
+}
+
+export function TasksList({ tasks }: DataTask) {
   return (
-    <div className="w-full overflow-x-auto overflow-y-auto">
-      <Table striped>
+    <div className="h-full w-full overflow-x-auto overflow-y-auto">
+      <Table striped hoverable>
         <Table.Head>
           <Table.HeadCell>Task</Table.HeadCell>
           <Table.HeadCell>Client</Table.HeadCell>
@@ -20,24 +27,31 @@ export function TasksList({ tasks }: RequestData) {
           <Table.HeadCell>Actions</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {tasks.data.length > 0 ? (
+          {tasks.data ? (
             tasks.data.map((task: Task) => (
-              <Table.Row key={task.id}>
+              <Table.Row key={task.id} className="cursor-pointer">
                 <Table.Cell>{task.name}</Table.Cell>
                 <Table.Cell>{task.client?.name}</Table.Cell>
-                <Table.Cell>{task.startDate}</Table.Cell>
-                <Table.Cell>{task.endDate}</Table.Cell>
-                <Table.Cell><StatusTag status={task.status} editable={false}/></Table.Cell>
+                <Table.Cell>{task.start_date}</Table.Cell>
+                <Table.Cell>{task.end_date}</Table.Cell>
+                <Table.Cell>
+                  <StatusTag status={task.status} editable={false} />
+                </Table.Cell>
                 <Table.Cell>
                   {task.workers?.map((worker) => (
                     <span key={worker.id}>{worker.name}</span>
                   ))}
                 </Table.Cell>
                 <Table.Cell className="flex space-x-2">
-                  <Button className="w-8 h-8 flex items-center justify-center bg-yellow-300">
-                    <FaEdit />
-                  </Button>
-                  <Button color="failure" className="w-8 h-8 flex items-center justify-center">
+                  <Link to={`${task.id}`}>
+                    <Button className="w-8 h-8 flex items-center justify-center bg-green-400">
+                      <FaEye />
+                    </Button>
+                  </Link>
+                  <Button
+                    color="failure"
+                    className="w-8 h-8 flex items-center justify-center"
+                  >
                     <AiFillDelete />
                   </Button>
                 </Table.Cell>
