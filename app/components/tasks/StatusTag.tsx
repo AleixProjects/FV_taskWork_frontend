@@ -16,7 +16,7 @@ export function StatusTag({ status, editable }) {
       icon = () => <MdOutlinePendingActions />;
       colorClass = "bg-neutral-400 text-white";
       break;
-    case "wating_accept":
+    case "waiting_accept":
       icon = () => <HiClock />;
       colorClass = "bg-yellow-300 text-white";
       break;

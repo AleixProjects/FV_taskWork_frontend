@@ -42,9 +42,30 @@ export async function getTask(id: string): Promise<Task[]> {
   return data;
 }
 
-export async function deleteTask(id: string, token: string): Promise<void> {
+export async function addTask(taskData: Task, request: Request): Promise<Task> {
+  console.log("Adding task");
+  const token = await getToken(request);
+  const response = await fetch(`${url}/tasks`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
 
-  const { error } = await fetch(`${url}/tasks/${id}`, {
+  if (!response.ok) {
+    throw new Error("Error adding task");
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+export async function deleteTask(id: string, request: Request): Promise<void> {
+  const token = await getToken(request);
+  const { status } = await fetch(`${url}/tasks/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -52,8 +73,8 @@ export async function deleteTask(id: string, token: string): Promise<void> {
     },
   });
 
-  if (error) {
-    console.error("Error deleting expense:", error);
-    throw new Error("Failed to delete expense.");
+  if (!status) {
+    console.error("Error deleting task");
+    throw new Error("Failed to delete task.");
   }
 }

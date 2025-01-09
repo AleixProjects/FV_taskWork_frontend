@@ -1,4 +1,3 @@
-
 export interface User {
   id: string;
   name: string;
@@ -8,12 +7,12 @@ export interface User {
 }
 
 export interface Task {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   start_date: string;
-  end_date: string;
-  total_time: number;
+  end_date?: string;
+  total_time: string;
   status: string;
   client?: Client;
   workers?: Worker[];
@@ -67,8 +66,8 @@ export interface SignupInput {
 }
 
 export interface RequestData {
-  status: string,
-  message: string,
-  data: string | null,
-  httpCode: number
+  status: string;
+  message: string;
+  data: string | null;
+  httpCode: number;
 }

@@ -1,28 +1,18 @@
-import { Button, Table } from "flowbite-react";
+import { Avatar, Button, Table } from "flowbite-react";
 import { Task, RequestData } from "~/types/interfaces";
 import { FaEye } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import { useFetcher, Link, Form } from "@remix-run/react";
 import { StatusTag } from "./StatusTag";
-import { useLoaderData, Link } from "@remix-run/react";
-import { LoaderFunction } from "@remix-run/node";
-
-import { deleteTask } from "~/data/tasks.server";
-import { getToken } from "~/data/auth.server";
-// import { deleteTask } from "~/data/tasks.server";
 
 interface DataTask {
   tasks: RequestData;
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const token = await getToken(request);
-  console.log(token);
-  return token;
-};
-
 export function TasksList({ tasks }: DataTask) {
-  const { token }: string = useLoaderData();
-  // console.log(tasks.data);
+  const fetcher = useFetcher();
+  const isDeleting = fetcher.state === "submitting";
+
   return (
     <div className="h-full w-full overflow-x-auto overflow-y-auto">
       <Table striped hoverable>
@@ -38,7 +28,7 @@ export function TasksList({ tasks }: DataTask) {
         <Table.Body className="divide-y">
           {tasks.data ? (
             tasks.data.map((task: Task) => (
-              <Table.Row key={task.id} className="cursor-pointer">
+              <Table.Row key={task.id}>
                 <Table.Cell>{task.name}</Table.Cell>
                 <Table.Cell>{task.client?.name}</Table.Cell>
                 <Table.Cell>{task.start_date}</Table.Cell>
@@ -47,9 +37,18 @@ export function TasksList({ tasks }: DataTask) {
                   <StatusTag status={task.status} editable={false} />
                 </Table.Cell>
                 <Table.Cell>
-                  {task.workers?.map((worker) => (
-                    <span key={worker.id}>{worker.name}</span>
-                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    <Avatar.Group>
+                      {task.workers?.map((worker) => (
+                        <Avatar
+                          key={worker.id}
+                          img={`/worker/${worker.image}`}
+                          rounded
+                          stacked
+                        />
+                      ))}
+                    </Avatar.Group>
+                  </div>
                 </Table.Cell>
                 <Table.Cell className="flex space-x-2">
                   <Link to={`${task.id}`}>
@@ -57,13 +56,17 @@ export function TasksList({ tasks }: DataTask) {
                       <FaEye />
                     </Button>
                   </Link>
-                  <Button
-                    color="failure"
-                    className="w-8 h-8 flex items-center justify-center"
-                    // onClick={deleteTask(task.id, token)}
-                  >
-                    <AiFillDelete />
-                  </Button>
+                  <fetcher.Form method="DELETE" action={`/tasks/${task.id}`}>
+                    <input type="hidden" name="_method" value="delete" />
+                    <Button
+                      color="failure"
+                      type="submit"
+                      className="w-8 h-8 flex items-center justify-center"
+                      disabled={isDeleting}
+                    >
+                      <AiFillDelete />
+                    </Button>
+                  </fetcher.Form>
                 </Table.Cell>
               </Table.Row>
             ))
@@ -75,6 +78,7 @@ export function TasksList({ tasks }: DataTask) {
             </Table.Row>
           )}
         </Table.Body>
+        -
       </Table>
     </div>
   );

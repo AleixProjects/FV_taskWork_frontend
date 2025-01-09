@@ -112,6 +112,6 @@ export async function getToken(request: Request) {
   const cookieHeader = request.headers.get("Cookie");
   if (!cookieHeader) return null;
   const session = await tokenCookie.getSession(cookieHeader);
-  const token = session.get("token");
+  const token = await session.get("token");
   return token || null;
 }
