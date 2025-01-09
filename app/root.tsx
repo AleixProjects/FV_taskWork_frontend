@@ -13,9 +13,7 @@ const brandName = process.env.BRAND_NAME || "NotTitle";
 
 export const meta: MetaFunction = () => {
   // console.log("brandName", brandName);
-  return [
-    { title: {brandName} },
-  ];
+  return [{ title: { brandName } }];
 };
 
 export const links: LinksFunction = () => {
@@ -33,6 +31,7 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swaphttps://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap",
     },
+    
   ];
 };
 
@@ -49,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
     </html>
   );

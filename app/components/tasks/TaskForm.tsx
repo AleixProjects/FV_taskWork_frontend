@@ -50,7 +50,7 @@ const TaskForm: React.FC = () => {
           <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 w-full h-full ">
             <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {taskData.id ? "Modify task: "+taskData.name : "Add task"}
+                {taskData.id ? "Modify task: " + taskData.name : "Add task"}
               </h3>
               <Link
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -85,6 +85,7 @@ const TaskForm: React.FC = () => {
                     type="text"
                     name="name"
                     id="name"
+                    placeholder="Write the name of the task"
                     defaultValue={taskData?.name}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required
@@ -170,15 +171,39 @@ const TaskForm: React.FC = () => {
                   >
                     Starting date
                   </label>
-                  <Datepicker
+                  <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <svg
+                        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                      </svg>
+                    </div>
+                    <input
+                      name="start_date"
+                      id="datepicker-autohide"
+                      datepicker
+                      datepicker-autohide
+                      type="date"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Select date"
+                    ></input>
+                  </div>
+                  {/* <Datepicker
                     pattern="Y-m-d"
                     defaultValue={
-                      taskData && taskData.start_date ? new Date(taskData.start_date) : new Date(today)
+                      taskData && taskData.start_date
+                        ? new Date(taskData.start_date)
+                        : new Date(today)
                     }
                     name="start_date"
                     id="start_date"
                   />
-                  ;
+                  ; */}
                 </div>
 
                 <div>
@@ -188,16 +213,40 @@ const TaskForm: React.FC = () => {
                   >
                     Ending date
                   </label>
-                  <Datepicker
+                  <div class="relative max-w-sm">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <svg
+                        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                      </svg>
+                    </div>
+                    <input
+                      name="end_date"
+                      id="datepicker-autohide"
+                      datepicker
+                      datepicker-autohide
+                      type="date"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Select date"
+                    ></input>
+                  </div>
+                  {/* <Datepicker
                     pattern="Y-m-d"
                     defaultValue={
-                        taskData && taskData.end_date ? new Date(taskData.end_date) : new Date(today)
+                      taskData && taskData.end_date
+                        ? new Date(taskData.end_date)
+                        : new Date(today)
                     }
                     minDate={new Date(today)}
                     name="end_date"
                     id="end_date"
                   />
-                  ;
+                  ; */}
                 </div>
                 <div>
                   <label
@@ -230,7 +279,7 @@ const TaskForm: React.FC = () => {
                     name="description"
                     rows={4}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Write product description here"
+                    placeholder="Write task description here"
                   ></textarea>
                 </div>
               </div>
@@ -260,6 +309,7 @@ const TaskForm: React.FC = () => {
           </div>
         </div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     </>
   );
 };
