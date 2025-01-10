@@ -26,12 +26,10 @@ export async function action({ request, params }: LoaderFunctionArgs) {
   // console.log(method);
   if (method === "PATCH") {
     console.log(`Updating task ID: ${taskId}`);
-    return redirect("/tasks");
+    return redirect(`/tasks/${taskId}`);
   } else if (method === "delete") {
-    console.log(`Task with id: ${taskId} deleted`);
     await deleteTask(taskId, request);
+    console.log(`Task with id: ${taskId} deleted`);
     return redirect("/tasks");
-  } else if (method === "POST") {
-    console.log("Aqui no he d'entrar");
   }
 }

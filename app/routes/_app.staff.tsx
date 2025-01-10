@@ -14,7 +14,7 @@ export default function Staff() {
       <div className="flex flex-col items-center justify-center max-h-screen p-4 bg-gray-100">
         <div className="h-screen w-full max-w-full pt-8">
           <div className="flex justify-end mb-4">
-            <Button href="tasks/add" className="flex items-center">
+            <Button href="staff/add" className="flex items-center">
               <MdAddToPhotos className="mr-2 h-5 w-5" />
               Add Worker
             </Button>

@@ -1,8 +1,7 @@
 import { useNavigate } from "@remix-run/react";
-import { Button } from "flowbite-react";
-import TaskDetail from "~/components/tasks/TaskDetail";
 import Modal from "~/components/Utils/Modal";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { redirect } from "@remix-run/node";
+import { deleteWorker } from "~/data/workers.server";
 
 export default function TaskDetailPage() {
   const navigate = useNavigate();
@@ -17,4 +16,19 @@ export default function TaskDetailPage() {
       <StaffDetail />
     </Modal>
   );
+}
+
+export async function action({ request, params }: LoaderFunctionArgs) {
+  const workerId = params.id as string;
+  const formdata = await request.formData();
+  const method = await formdata.get("_method");
+
+  if (method === "patch") {
+    redirect(`/staff/${workerId}`);
+  } else if (method === "delete") {
+    await deleteWorker(workerId, request);
+    console.log(`Worker with id: ${workerId} deleted`);
+
+    return redirect("/staff");
+  }
 }

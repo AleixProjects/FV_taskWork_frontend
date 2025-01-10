@@ -1,4 +1,4 @@
-import { Task } from "~/types/interfaces";
+import { Task, Worker } from "~/types/interfaces";
 
 type ValidationErrors = Record<string, string>;
 
@@ -13,6 +13,10 @@ export interface TypeErrors {
 
 function isValidTitle(value: string): boolean {
   return value.trim().length > 0 && value.trim().length <= 100;
+}
+
+function isValidName(value: string): boolean {
+  return value.trim().length > 0 && value.trim().length <= 50;
 }
 
 function isValidDescription(value: string): boolean {
@@ -33,6 +37,10 @@ function isValidEmail(value: string): boolean {
 
 function isValidPassword(value: string): boolean {
   return value.trim().length >= 7;
+}
+
+function isValidRole(value: string): boolean {
+  return value === "office" || value === "factory"
 }
 
 // ----------------------------
@@ -57,6 +65,34 @@ export function validateTask(input: Task): void {
     throw validationErrors;
   }
   console.log("Task validated");
+}
+
+// ----------------------------
+// VALIDACIÓ DE WORKERS
+// ----------------------------
+
+export function validateWorker(input: Worker): void {
+  const validationErrors: ValidationErrors = {};
+
+  if (!isValidName(input.name)) {
+    validationErrors.name =
+      "Invalid name. Must be at most 50 characters long";
+  }
+  if (!isValidName(input.surname)) {
+    validationErrors.name =
+      "Invalid surname . Must be at most 50 characters long";
+  }
+
+  if (!isValidRole(input.role)) {
+    validationErrors.role =
+      "You have to select one role";
+  }
+
+  // Llança l'error si hi ha alguna validació fallida
+  if (Object.keys(validationErrors).length > 0) {
+    throw validationErrors;
+  }
+  console.log("Worker validated");
 }
 
 // ----------------------------

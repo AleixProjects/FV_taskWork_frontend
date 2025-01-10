@@ -1,5 +1,5 @@
 export interface User {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
@@ -20,16 +20,16 @@ export interface Task {
 }
 
 export interface Worker {
-  id: string;
+  id?: string;
   name: string;
   surname: string;
   role: string;
-  image: string;
+  image: string | null;
   tasks?: Task[];
 }
 
 export interface Client {
-  id: string;
+  id?: string;
   name: string;
   surname: string;
   dni?: string;
@@ -43,6 +43,7 @@ export interface Client {
 }
 
 export interface Material {
+  id?: string;
   name: string;
   description: string;
   image: string;

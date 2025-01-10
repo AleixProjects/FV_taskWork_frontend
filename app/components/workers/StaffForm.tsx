@@ -1,0 +1,188 @@
+import {
+  Form,
+  Link,
+  useActionData,
+  useMatches,
+  useNavigation,
+  useParams,
+} from "@remix-run/react";
+import { Button } from "flowbite-react";
+import { Worker, ValidationErrors } from "~/types/interfaces";
+
+const StaffForm: React.FC = () => {
+  const validationErrors = useActionData<ValidationErrors>();
+
+  const params = useParams();
+
+  const matches = useMatches();
+
+  const matchedRoute = matches.find(
+    (match) => match.id === "routes/_app.staff"
+  );
+
+  const workerData = (matchedRoute?.data?.data as Worker[]).find(
+    ({ id }) => id == params.id
+  ) || {
+    id: false,
+    name: "",
+    surname: "",
+    role: "",
+  };
+
+  console.log(workerData);
+
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state !== "idle";
+
+  return (
+    <>
+      <div
+        id="defaultModal"
+        aria-hidden="true"
+        className=" overflow-y-auto overflow-x-hidden z-50 align-middle justify-center items-center w-full h-modal md:h-full flex-col"
+      >
+        <div className="relative p-4 w-full h-full flex items-center justify-center">
+          <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 w-full h-full ">
+            <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {workerData.id
+                  ? "Modify worker: " + workerData.name
+                  : "Add worker"}
+              </h3>
+              <Link
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                prefetch="none"
+                to=".."
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    fillRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </Link>
+            </div>
+            <Form encType="multipart/form-data" method={workerData.id ? "patch" : "post"} id="worker-form">
+              <div className="grid gap-4 mb-4 sm:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Write the name of the worker"
+                    defaultValue={workerData?.name}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Surname
+                  </label>
+                  <input
+                    type="text"
+                    name="surname"
+                    id="surname"
+                    placeholder="Write the name of the worker"
+                    defaultValue={workerData?.surname}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="status"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Role
+                  </label>
+                  <select
+                    id="role"
+                    name="role"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    required
+                  >
+                    <option selected={workerData ? false : true}>
+                      Select role
+                    </option>
+                    <option
+                      selected={workerData?.role === "factory" ? true : false}
+                      value="factory"
+                    >
+                      Factory
+                    </option>
+                    <option
+                      selected={
+                        workerData?.role === "waiting_accept" ? true : false
+                      }
+                      value="office"
+                    >
+                      Office
+                    </option>
+                  </select>
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="description"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Image Worker
+                  </label>
+                  <input
+                    type="file"
+                    id="profileImage"
+                    name="profileImage"
+                    accept="image/*"
+                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  />
+                </div>
+              </div>
+              {validationErrors && (
+                <ul className="mb-4 list-inside list-disc text-red-500">
+                  {Object.values(validationErrors).map((error: string) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              )}
+              <Button type="submit" disabled={isSubmitting}>
+                <svg
+                  className="mr-1 -ml-1 w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                {isSubmitting ? "Saving..." : "Submit worker"}
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    </>
+  );
+};
+
+export default StaffForm;
