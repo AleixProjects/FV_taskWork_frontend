@@ -7,6 +7,7 @@ import {
   useParams,
 } from "@remix-run/react";
 import { Button } from "flowbite-react";
+import { useState } from "react";
 import { Worker, ValidationErrors } from "~/types/interfaces";
 
 const StaffForm: React.FC = () => {
@@ -69,7 +70,17 @@ const StaffForm: React.FC = () => {
                 <span className="sr-only">Close modal</span>
               </Link>
             </div>
-            <Form encType="multipart/form-data" method={workerData.id ? "patch" : "post"} id="worker-form">
+            <Form
+              encType="multipart/form-data"
+              method="post"
+              id="worker-form"
+              action={`/staff/${workerData?.id}`}
+            >
+              <input
+                type="hidden"
+                name="_method"
+                value={workerData.id ? "patch" : "post"}
+              />
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                   <label
@@ -129,7 +140,7 @@ const StaffForm: React.FC = () => {
                     </option>
                     <option
                       selected={
-                        workerData?.role === "waiting_accept" ? true : false
+                        workerData?.role === "office" ? true : false
                       }
                       value="office"
                     >
@@ -174,7 +185,11 @@ const StaffForm: React.FC = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                {isSubmitting ? "Saving..." : "Submit worker"}
+                {isSubmitting
+                  ? "Saving..."
+                  : workerData
+                  ? "Save Changes"
+                  : "Add Worker"}
               </Button>
             </Form>
           </div>

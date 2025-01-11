@@ -6,7 +6,7 @@ import {
   useNavigation,
   useParams,
 } from "@remix-run/react";
-import { Button, Datepicker } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Task, ValidationErrors } from "~/types/interfaces";
 
 const TaskForm: React.FC = () => {
@@ -72,7 +72,8 @@ const TaskForm: React.FC = () => {
                 <span className="sr-only">Close modal</span>
               </Link>
             </div>
-            <Form method={taskData.id ? "patch" : "post"} id="task-form">
+            <Form method="post" id="task-form">
+              <input type="hidden" name="_method" value={taskData.id ? "patch" : "post"} />
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                   <label
@@ -171,10 +172,10 @@ const TaskForm: React.FC = () => {
                   >
                     Starting date
                   </label>
-                  <div class="relative max-w-sm">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <div className="relative max-w-sm">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg
-                        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -186,9 +187,8 @@ const TaskForm: React.FC = () => {
                     <input
                       name="start_date"
                       id="datepicker-autohide"
-                      datepicker
-                      datepicker-autohide
                       type="date"
+                      defaultValue={taskData.start_date}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Select date"
                     ></input>
@@ -213,10 +213,10 @@ const TaskForm: React.FC = () => {
                   >
                     Ending date
                   </label>
-                  <div class="relative max-w-sm">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <div className="relative max-w-sm">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <svg
-                        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -228,9 +228,8 @@ const TaskForm: React.FC = () => {
                     <input
                       name="end_date"
                       id="datepicker-autohide"
-                      datepicker
-                      datepicker-autohide
                       type="date"
+                      defaultValue={taskData.end_date}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Select date"
                     ></input>
@@ -261,7 +260,7 @@ const TaskForm: React.FC = () => {
                     id="total_time"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="0"
-                    defaultValue="0"
+                    defaultValue={taskData.total_time}
                     min={0}
                     max={999}
                   ></input>
@@ -278,6 +277,7 @@ const TaskForm: React.FC = () => {
                     id="description"
                     name="description"
                     rows={4}
+                    defaultValue={taskData.description}
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Write task description here"
                   ></textarea>
@@ -298,12 +298,12 @@ const TaskForm: React.FC = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
-                {isSubmitting ? "Saving..." : "Submit task"}
+                {isSubmitting ? "Saving..." : taskData ? "Save Task" : "Add Task"}
               </Button>
             </Form>
           </div>

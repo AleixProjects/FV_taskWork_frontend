@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs, Outlet, useLoaderData } from "react-router-dom";
 import { BaseNavigation } from "app/components/navigation/BaseNavigation";
 import { UserNavigation } from "app/components/navigation/UserNavigation";
-import { getToken, getUser } from "~/data/auth.server";
+import { getUser } from "~/data/auth.server";
 import { User } from "~/types/interfaces";
 
 export async function loader({

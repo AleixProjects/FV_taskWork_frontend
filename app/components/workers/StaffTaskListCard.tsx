@@ -2,6 +2,7 @@ import { Card, Dropdown } from "flowbite-react";
 import React from "react";
 import Image from "next/image";
 import { Worker } from "~/types/interfaces";
+import { FaUserCircle } from "react-icons/fa";
 
 interface StaffTaskListCardProps {
   workers: Worker[] | undefined;
@@ -17,7 +18,10 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({ workers }) => {
           Staff on the task
         </h5>
         <div>
-          <Dropdown label="Dropdown">
+          <Dropdown
+            label="Add Worker"
+            className="text-gray-900 dark:text-white"
+          >
             <Dropdown.Item onClick={() => alert("Dashboard!")}>
               Dashboard
             </Dropdown.Item>
@@ -41,13 +45,15 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({ workers }) => {
                 <li key={worker.id} className="py-3 sm:py-4">
                   <div className="flex items-center space-x-4">
                     <div className="shrink-0">
-                      <Image
-                        alt={`${worker.name} Image`}
-                        height="32"
-                        src={worker.image}
-                        width="32"
-                        className="rounded-full"
-                      />
+                      {worker?.image ? (
+                        <img
+                          className="w-8 h-8 rounded-full shadow-lg mr-4"
+                          src={`worker/${worker.image}`}
+                          alt={`${worker?.name} ${worker?.surname}`}
+                        />
+                      ) : (
+                        <FaUserCircle className="mb-3 rounded-full shadow-lg w-8 h-8 bg-gray-900 dark:bg-gray-100" />
+                      )}
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-gray-900 dark:text-white">

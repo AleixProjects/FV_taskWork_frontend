@@ -30,25 +30,31 @@ export function TasksList({ tasks }: DataTask) {
             tasks.data.map((task: Task) => (
               <Table.Row key={task.id}>
                 <Table.Cell>{task.name}</Table.Cell>
-                <Table.Cell>{task.client?.name}</Table.Cell>
+                <Table.Cell>
+                  {task.client === undefined ? task.client.name : "No client assigned"}
+                </Table.Cell>
                 <Table.Cell>{task.start_date}</Table.Cell>
                 <Table.Cell>{task.end_date}</Table.Cell>
                 <Table.Cell>
                   <StatusTag status={task.status} editable={false} />
                 </Table.Cell>
                 <Table.Cell>
-                  <div className="flex flex-wrap gap-2">
-                    <Avatar.Group>
-                      {task.workers?.map((worker) => (
-                        <Avatar
-                          key={worker.id}
-                          img={`/worker/${worker.image}`}
-                          rounded
-                          stacked
-                        />
-                      ))}
-                    </Avatar.Group>
-                  </div>
+                  {task.workers?.length > 0 ? (
+                    <div className="flex flex-wrap gap-2">
+                      <Avatar.Group>
+                        {task.workers?.map((worker) => (
+                          <Avatar
+                            key={worker.id}
+                            img={`/worker/${worker.image}`}
+                            rounded
+                            stacked
+                          />
+                        ))}
+                      </Avatar.Group>
+                    </div>
+                  ) : (
+                    "No workers assigned"
+                  )}
                 </Table.Cell>
                 <Table.Cell className="flex space-x-2">
                   <Link to={`${task.id}`}>

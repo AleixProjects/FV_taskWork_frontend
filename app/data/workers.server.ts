@@ -86,3 +86,27 @@ export async function deleteWorker(
     throw new Error("Failed to delete worker.");
   }
 }
+
+//PATCH Worker
+export async function updateWorker(
+  workerData: Worker,
+  request: Request
+): Promise<Worker> {
+  const token = await getToken(request);
+  const response = await fetch(`${url}/workers/${workerData.id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(workerData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error updating worker");
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+}

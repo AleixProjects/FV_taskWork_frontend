@@ -78,3 +78,26 @@ export async function deleteTask(id: string, request: Request): Promise<void> {
     throw new Error("Failed to delete task.");
   }
 }
+
+export async function updateTask(
+  taskData: Task,
+  request: Request
+): Promise<Task> {
+  const token = await getToken(request);
+  const response = await fetch(`${url}/tasks/${taskData.id}`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error updating task");
+  }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
