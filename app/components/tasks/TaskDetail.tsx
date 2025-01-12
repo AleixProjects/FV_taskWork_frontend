@@ -16,6 +16,7 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import TaskForm from "./TaskForm";
 import MaterialTaskListCard from "../materials/MaterialTaskListCard";
+import { RxCross2 } from "react-icons/rx";
 
 const TaskDetail: React.FC = () => {
   const validationErrors = useActionData<ValidationErrors>();
@@ -59,7 +60,11 @@ const TaskDetail: React.FC = () => {
 
                   <div className="flex justify-around w-1/6">
                     <div>
-                      <Link to={`?mode=edit`} tabIndex={0} aria-label="Edit task">
+                      <Link
+                        to={`?mode=edit`}
+                        tabIndex={0}
+                        aria-label="Edit task"
+                      >
                         <Button className="w-8 h-8 flex rounded-lg items-center justify-center bg-yellow-400 ">
                           <FaEdit />
                         </Button>
@@ -92,18 +97,7 @@ const TaskDetail: React.FC = () => {
                         tabIndex={0}
                         aria-label="Close modal"
                       >
-                        <svg
-                          aria-hidden="true"
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            fillRule="evenodd"
-                          ></path>
-                        </svg>
+                        <RxCross2 />
                       </Link>
                     </div>
                   </div>
@@ -143,16 +137,16 @@ const TaskDetail: React.FC = () => {
 
                 <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
                   <div className="w-full lg:w-1/2">
-                  <StaffTaskListCard
-                    task={taskData}
-                    workersTask={taskData.workers}
-                  />
+                    <StaffTaskListCard
+                      task={taskData}
+                      workersTask={taskData.workers}
+                    />
                   </div>
                   <div className="w-full lg:w-1/2">
-                  <MaterialTaskListCard
-                    task={taskData}
-                    materialsTask={taskData.materials}
-                  />
+                    <MaterialTaskListCard
+                      task={taskData}
+                      materialsTask={taskData.materials}
+                    />
                   </div>
                 </div>
               </div>

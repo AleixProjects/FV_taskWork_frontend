@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react";
 import { Button } from "flowbite-react";
 import { Material, ValidationErrors } from "~/types/interfaces";
+import { RxCross2 } from "react-icons/rx";
 
 const MaterialForm: React.FC = () => {
   const validationErrors = useActionData<ValidationErrors>();
@@ -55,35 +56,16 @@ const MaterialForm: React.FC = () => {
                 to=".."
                 tabIndex={0}
               >
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10 0C4.477 0 0 4.477 0 10c0 5.522 4.477 10 10 10 5.522 0 10-4.478 10-10 0-5.523-4.478-10-10-10zm0 18.75c-4.914 0-8.75-3.836-8.75-8.75S5.086 1.25 10 1.25s8.75 3.836 8.75 8.75-3.836 8.75-8.75 8.75z"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10 4.375a.625.625 0 00-.625.625v8.75a.625.625 0 001.25 0v-8.75a.625.625 0 00-.625-.625z"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10 4.375a.625.625 0 00-.625.625v8.75a.625.625 0 001.25 0v-8.75a.625.625 0 00-.625-.625z"
-                  />
-                </svg>
+                <RxCross2 />
                 <span className="sr-only">Close modal</span>
               </Link>
             </div>
             <Form
               method="post"
               action={
-                materialData.id ? `/materials/${materialData.id}` : "/materials/add"
+                materialData.id
+                  ? `/materials/${materialData.id}`
+                  : "/materials/add"
               }
               encType="multipart/form-data"
               id="material-form"
