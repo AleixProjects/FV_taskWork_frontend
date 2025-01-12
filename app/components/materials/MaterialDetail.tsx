@@ -52,6 +52,7 @@ const MaterialDetail = () => {
                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     prefetch="none"
                     to=".."
+                    tabIndex={0}
                   >
                     <svg
                       aria-hidden="true"
@@ -89,8 +90,8 @@ const MaterialDetail = () => {
                     </h1>
                   </div>
                   <div className="flex justify-end mt-4">
-                    <Link to={`?mode=edit`}>
-                      <Button className="w-8 h-8 mr-3 flex rounded-lg items-center justify-center bg-yellow-400">
+                    <Link to={`?mode=edit`} tabIndex={0}>
+                      <Button className="w-8 h-8 mr-3 flex rounded-lg items-center justify-center bg-yellow-400" tabIndex={-1}>
                         <FaEdit />
                       </Button>
                     </Link>
@@ -105,6 +106,7 @@ const MaterialDetail = () => {
                         className="w-8 h-8 flex items-center justify-center"
                         onClick={handleIsDeleting}
                         disabled={isDeleting}
+                        tabIndex={0}
                       >
                         <AiFillDelete />
                       </Button>
@@ -119,6 +121,7 @@ const MaterialDetail = () => {
                   rows={4}
                   value={materialData?.description}
                   readOnly
+                  tabIndex={0}
                 ></textarea>
 
                 <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />

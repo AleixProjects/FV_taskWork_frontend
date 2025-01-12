@@ -56,6 +56,7 @@ const MaterialTaskListCard: React.FC<MaterialTaskListCardProps> = ({
                 aria-expanded="false"
                 aria-haspopup="true"
                 onClick={toggleDropdown}
+                tabIndex={0}
               >
                 Add Material
               </Button>
@@ -82,6 +83,7 @@ const MaterialTaskListCard: React.FC<MaterialTaskListCardProps> = ({
                           value={material.id}
                           color="none"
                           className="block w-full text-left text-sm text-gray-700 dark:text-gray-300"
+                          tabIndex={0}
                         >
                           <div className="flex items-center space-x-2">
                             <img
@@ -142,6 +144,7 @@ const MaterialTaskListCard: React.FC<MaterialTaskListCardProps> = ({
                           className="w-8 h-8 flex items-center justify-center"
                           onClick={handleIsDeleting}
                           disabled={isDeleting}
+                          tabIndex={0}
                         >
                           <AiFillDelete />
                         </Button>

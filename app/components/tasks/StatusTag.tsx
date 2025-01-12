@@ -48,7 +48,7 @@ export function StatusTag({ status, editable }) {
 
   return (
     <div className="flex flex-wrap gap-2">
-      <Badge className={colorClass} icon={icon || undefined}>
+      <Badge className={colorClass} icon={icon || undefined} tabIndex={0} aria-label={`Status: ${status.replace("_", " ")}`}>
         {status.replace("_", " ")}
       </Badge>
     </div>

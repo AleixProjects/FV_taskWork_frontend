@@ -26,6 +26,7 @@ export function BaseNavigation() {
         aria-controls="default-sidebar"
         type="button"
         className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        tabIndex={0}
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -36,8 +37,8 @@ export function BaseNavigation() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
+            clipRule="evenodd"
+            fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
@@ -66,6 +67,7 @@ export function BaseNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiArrowSmRight className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Enter</span>
@@ -77,6 +79,7 @@ export function BaseNavigation() {
           <a
             href="#"
             className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -92,6 +95,7 @@ export function BaseNavigation() {
             href="#"
             data-tooltip-target="tooltip-settings"
             className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -101,9 +105,9 @@ export function BaseNavigation() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           </a>
@@ -118,7 +122,8 @@ export function BaseNavigation() {
           <button
             type="button"
             data-dropdown-toggle="language-dropdown"
-            className="hidden inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            className=" inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -131,7 +136,7 @@ export function BaseNavigation() {
               <path
                 d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
                 stroke="#fff"
-                stroke-width="300"
+                strokeWidth="300"
               />
               <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
               <g fill="#fff">
@@ -169,6 +174,7 @@ export function BaseNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg
@@ -178,8 +184,8 @@ export function BaseNavigation() {
                       id="flag-icon-css-us"
                       viewBox="0 0 512 512"
                     >
-                      <g fill-rule="evenodd">
-                        <g stroke-width="1pt">
+                      <g fillRule="evenodd">
+                        <g strokeWidth="1pt">
                           <path
                             fill="#bd3d44"
                             d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
@@ -212,6 +218,7 @@ export function BaseNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg
@@ -233,6 +240,7 @@ export function BaseNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg

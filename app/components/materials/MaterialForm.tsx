@@ -53,6 +53,7 @@ const MaterialForm: React.FC = () => {
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 prefetch="none"
                 to=".."
+                tabIndex={0}
               >
                 <svg
                   aria-hidden="true"
@@ -107,6 +108,7 @@ const MaterialForm: React.FC = () => {
                     defaultValue={materialData.name}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
+                    tabIndex={0}
                   />
                 </div>
                 <div>
@@ -122,6 +124,7 @@ const MaterialForm: React.FC = () => {
                     defaultValue={materialData.description}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
+                    tabIndex={0}
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -137,6 +140,7 @@ const MaterialForm: React.FC = () => {
                     name="image"
                     accept="image/*"
                     className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    tabIndex={0}
                   />
                 </div>
               </div>
@@ -147,7 +151,7 @@ const MaterialForm: React.FC = () => {
                   ))}
                 </div>
               )}
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} tabIndex={0}>
                 <svg
                   className="mr-1 -ml-1 w-6 h-6"
                   fill="currentColor"

@@ -68,8 +68,8 @@ export function TasksList({ tasks }: DataTask) {
                   )}
                 </Table.Cell>
                 <Table.Cell className="flex space-x-2">
-                  <Link to={`${task.id}`}>
-                    <Button className="w-8 h-8 flex items-center justify-center bg-green-400">
+                  <Link to={`${task.id}`} tabIndex={0}>
+                    <Button className="w-8 h-8 flex items-center justify-center bg-green-400" tabIndex={-1}>
                       <FaEye />
                     </Button>
                   </Link>
@@ -80,6 +80,7 @@ export function TasksList({ tasks }: DataTask) {
                       type="submit"
                       className="w-8 h-8 flex items-center justify-center"
                       disabled={isDeleting}
+                      tabIndex={0}
                     >
                       <AiFillDelete />
                     </Button>
@@ -95,7 +96,6 @@ export function TasksList({ tasks }: DataTask) {
             </Table.Row>
           )}
         </Table.Body>
-        -
       </Table>
     </div>
   );

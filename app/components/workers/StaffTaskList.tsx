@@ -22,9 +22,9 @@ const StaffTaskList: React.FC<StaffTaskListProps> = ({ tasks }) => {
                 </thead>
                 <tbody>
                     {tasks.map(task => (
-                        <tr key={task.id}>
+                        <tr key={task.id} tabIndex={0} aria-label={`Task ${task.id}`}>
                             <td>{task.id}</td>
-                            <td>{task.title}</td>
+                            <td>{task.name}</td>
                             <td>{task.description}</td>
                             <td>{task.status}</td>
                         </tr>

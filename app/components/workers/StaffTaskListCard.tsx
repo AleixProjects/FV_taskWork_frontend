@@ -14,7 +14,7 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
   workersTask,
   task,
 }) => {
-  const [handleDropdown, setHandleDropdown] = useState(true);
+  const [handleDropdown, setHandleDropdown] = useState(false);
   const toggleDropdown = () => {
     setHandleDropdown(!handleDropdown);
   };
@@ -54,6 +54,8 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
                 aria-expanded="false"
                 aria-haspopup="true"
                 onClick={toggleDropdown}
+                tabIndex={0}
+                aria-label="Add Worker"
               >
                 Add Worker
               </Button>
@@ -72,6 +74,8 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
                       <div
                         key={worker.id}
                         className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                        tabIndex={0}
+                        aria-label={`Add ${worker.name} ${worker.surname}`}
                       >
                         <input type="hidden" name="task_id" value={task.id} />
                         <Button
@@ -112,7 +116,11 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
                           alt={`${worker?.name} ${worker?.surname}`}
                         />
                       ) : (
-                        <FaUserCircle className="mb-3 rounded-full shadow-lg w-8 h-8 bg-gray-900 dark:bg-gray-100" />
+                        <FaUserCircle
+                          className="mb-3 rounded-full shadow-lg w-8 h-8 bg-gray-900 dark:bg-gray-100"
+                          tabIndex={0}
+                          aria-label="User avatar"
+                        />
                       )}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -141,6 +149,8 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
                           className="w-8 h-8 flex items-center justify-center"
                           onClick={handleIsDeleting}
                           disabled={isDeleting}
+                          tabIndex={0}
+                          aria-label="Remove worker"
                         >
                           <AiFillDelete />
                         </Button>

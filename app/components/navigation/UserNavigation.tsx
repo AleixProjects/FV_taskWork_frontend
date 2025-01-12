@@ -26,6 +26,7 @@ export function UserNavigation() {
         aria-controls="default-sidebar"
         type="button"
         className="z-50 inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        tabIndex={0}
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -65,6 +66,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiChartPie className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Dashboard</span>
@@ -80,6 +82,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiCollection className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Tasks</span>
@@ -95,6 +98,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiUsers className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Staff</span>
@@ -110,6 +114,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiViewGrid className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Materials</span>
@@ -125,6 +130,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiMiniUserGroup className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Clients</span>
@@ -142,6 +148,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiUser className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Profile</span>
@@ -157,6 +164,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <BiBrightness className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Settings</span>
@@ -172,6 +180,7 @@ export function UserNavigation() {
                       : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`
                 }
+                tabIndex={0}
               >
                 <HiArrowLeftEndOnRectangle className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ml-3">Log Out</span>
@@ -183,6 +192,7 @@ export function UserNavigation() {
           <a
             href="#"
             className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -198,6 +208,7 @@ export function UserNavigation() {
             href="#"
             data-tooltip-target="tooltip-settings"
             className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -207,9 +218,9 @@ export function UserNavigation() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           </a>
@@ -225,6 +236,7 @@ export function UserNavigation() {
             type="button"
             data-dropdown-toggle="language-dropdown"
             className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+            tabIndex={0}
           >
             <svg
               aria-hidden="true"
@@ -237,7 +249,7 @@ export function UserNavigation() {
               <path
                 d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
                 stroke="#fff"
-                stroke-width="300"
+                strokeWidth="300"
               />
               <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
               <g fill="#fff">
@@ -275,6 +287,7 @@ export function UserNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg
@@ -284,8 +297,8 @@ export function UserNavigation() {
                       id="flag-icon-css-us"
                       viewBox="0 0 512 512"
                     >
-                      <g fill-rule="evenodd">
-                        <g stroke-width="1pt">
+                      <g fillRule="evenodd">
+                        <g strokeWidth="1pt">
                           <path
                             fill="#bd3d44"
                             d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
@@ -318,6 +331,7 @@ export function UserNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg
@@ -339,6 +353,7 @@ export function UserNavigation() {
                   href="#"
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
                   role="menuitem"
+                  tabIndex={0}
                 >
                   <div className="inline-flex items-center">
                     <svg

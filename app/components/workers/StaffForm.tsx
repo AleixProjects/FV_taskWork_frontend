@@ -5,9 +5,12 @@ import {
   useMatches,
   useNavigation,
   useParams,
+  useFetcher,
 } from "@remix-run/react";
 import { Button } from "flowbite-react";
 import { Worker, ValidationErrors } from "~/types/interfaces";
+
+
 
 const StaffForm: React.FC = () => {
   const validationErrors = useActionData<ValidationErrors>();
@@ -33,6 +36,8 @@ const StaffForm: React.FC = () => {
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
+
+  const fetcher = useFetcher();
 
   return (
     <>
@@ -69,7 +74,7 @@ const StaffForm: React.FC = () => {
                 <span className="sr-only">Close modal</span>
               </Link>
             </div>
-            <Form
+            <fetcher.Form
               encType="multipart/form-data"
               method="post"
               id="worker-form"
@@ -96,6 +101,7 @@ const StaffForm: React.FC = () => {
                     defaultValue={workerData?.name}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required
+                    tabIndex={0}
                   />
                 </div>
                 <div>
@@ -113,6 +119,7 @@ const StaffForm: React.FC = () => {
                     defaultValue={workerData?.surname}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required
+                    tabIndex={0}
                   />
                 </div>
                 <div>
@@ -127,6 +134,7 @@ const StaffForm: React.FC = () => {
                     name="role"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required
+                    tabIndex={0}
                   >
                     <option selected={workerData ? false : true}>
                       Select role
@@ -161,6 +169,7 @@ const StaffForm: React.FC = () => {
                     name="profileImage"
                     accept="image/*"
                     className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    tabIndex={0}
                   />
                 </div>
               </div>
@@ -171,7 +180,7 @@ const StaffForm: React.FC = () => {
                   ))}
                 </ul>
               )}
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} tabIndex={0}>
                 <svg
                   className="mr-1 -ml-1 w-6 h-6"
                   fill="currentColor"
@@ -190,7 +199,7 @@ const StaffForm: React.FC = () => {
                   ? "Save Changes"
                   : "Add Worker"}
               </Button>
-            </Form>
+            </fetcher.Form>
           </div>
         </div>
       </div>

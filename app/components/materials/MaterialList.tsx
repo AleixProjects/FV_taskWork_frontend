@@ -30,8 +30,8 @@ export function MaterialList({ materials }: { materials: Material[] }) {
               {material.name}
             </h5>
             <div className="mt-4 flex space-x-3 lg:mt-6">
-              <Link to={`${material.id}`}>
-                <Button className="w-8 h-8 flex items-center justify-center bg-green-400">
+              <Link to={`${material.id}`} tabIndex={0}>
+                <Button className="w-8 h-8 flex items-center justify-center bg-green-400" tabIndex={-1}>
                   <FaEye />
                 </Button>
               </Link>
@@ -42,6 +42,7 @@ export function MaterialList({ materials }: { materials: Material[] }) {
                   type="submit"
                   className="w-8 h-8 flex items-center justify-center"
                   disabled={isDeleting}
+                  tabIndex={0}
                 >
                   <AiFillDelete />
                 </Button>

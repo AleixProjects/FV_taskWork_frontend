@@ -25,10 +25,14 @@ export function StaffList({ workers }: DataStaff) {
                   height="96"
                   src={`/workers/${worker.image}`}
                   width="96"
-                  className="mb-3 rounded-full shadow-lg"
+                  className="mb-3 rounded-full shadow-lg"ç
                 />
               ) : (
-                <FaUserCircle className="mb-3 rounded-full shadow-lg w-24 h-24 bg-gray-900 dark:bg-gray-100" />
+                <FaUserCircle
+                  className="mb-3 rounded-full shadow-lg w-24 h-24 bg-gray-900 dark:bg-gray-100"
+                  tabIndex={0}
+                  aria-label="User avatar"
+                />
               )}
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                 {`${worker.name} ${worker.surname}`}
@@ -37,7 +41,7 @@ export function StaffList({ workers }: DataStaff) {
                 {worker.role}
               </span>
               <div className="mt-4 flex space-x-3 lg:mt-6">
-                <Link to={`${worker.id}`}>
+                <Link to={`${worker.id}`} tabIndex={0} aria-label="View worker details">
                   <Button className="w-8 h-8 flex items-center justify-center bg-green-400">
                     <FaEye />
                   </Button>
@@ -49,6 +53,8 @@ export function StaffList({ workers }: DataStaff) {
                     type="submit"
                     className="w-8 h-8 flex items-center justify-center"
                     disabled={isDeleting}
+                    tabIndex={0}
+                    aria-label="Delete worker"
                   >
                     <AiFillDelete />
                   </Button>

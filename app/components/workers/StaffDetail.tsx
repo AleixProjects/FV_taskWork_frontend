@@ -54,6 +54,8 @@ const StaffDetail: React.FC = () => {
                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     prefetch="none"
                     to=".."
+                    tabIndex={0}
+                    aria-label="Close modal"
                   >
                     <svg
                       aria-hidden="true"
@@ -63,7 +65,7 @@ const StaffDetail: React.FC = () => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 111.414 1.414L11.414 10l4.293 4.293a1 1 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                         fillRule="evenodd"
                       ></path>
                     </svg>
@@ -82,7 +84,11 @@ const StaffDetail: React.FC = () => {
                         alt={`${workerData?.name} ${workerData?.surname}`}
                       />
                     ) : (
-                      <FaUserCircle className="mb-3 rounded-full shadow-lg w-24 h-24 bg-gray-900 dark:bg-gray-100" />
+                      <FaUserCircle
+                        className="mb-3 rounded-full shadow-lg w-24 h-24 bg-gray-900 dark:bg-gray-100"
+                        tabIndex={0}
+                        aria-label="User avatar"
+                      />
                     )}
                     <div className="pl-6">
                       <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -94,7 +100,7 @@ const StaffDetail: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex justify-end mt-4">
-                    <Link to={`?mode=edit`}>
+                    <Link to={`?mode=edit`} tabIndex={0} aria-label="Edit worker">
                       <Button className="w-8 h-8 mr-3 flex rounded-lg items-center justify-center bg-yellow-400">
                         <FaEdit />
                       </Button>
@@ -110,6 +116,8 @@ const StaffDetail: React.FC = () => {
                         className="w-8 h-8 flex items-center justify-center"
                         onClick={handleIsDeleting}
                         disabled={isDeleting}
+                        tabIndex={0}
+                        aria-label="Delete worker"
                       >
                         <AiFillDelete />
                       </Button>
