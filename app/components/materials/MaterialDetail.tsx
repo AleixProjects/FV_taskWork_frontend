@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Link,
   useActionData,
@@ -7,23 +6,24 @@ import {
   useParams,
   useSearchParams,
 } from "@remix-run/react";
+import { useState } from "react";
+import { Material, ValidationErrors } from "~/types/interfaces";
+import MaterialForm from "./MaterialForm";
 import { Button } from "flowbite-react";
-import { AiFillDelete } from "react-icons/ai";
-import { FaEdit, FaUserCircle } from "react-icons/fa";
-import { ValidationErrors, Worker } from "~/types/interfaces";
-import StaffForm from "./StaffForm";
-import StaffTaskList from "./StaffTaskList";
 
-const StaffDetail: React.FC = () => {
+import { AiFillDelete } from "react-icons/ai";
+import { FaEdit } from "react-icons/fa";
+
+const MaterialDetail = () => {
   const validationErrors = useActionData<ValidationErrors>();
 
   const matches = useMatches();
   const params = useParams();
   const matchedRoute = matches.find(
-    (match) => match.id === "routes/_app.staff"
+    (match) => match.id === "routes/_app.materials"
   );
   console.log(matchedRoute);
-  const workerData = (matchedRoute.data.data as Worker[]).find(
+  const materialData = (matchedRoute.data.data as Material[]).find(
     ({ id }) => id == params.id
   );
 
@@ -38,13 +38,11 @@ const StaffDetail: React.FC = () => {
     setIsDeleting(true);
   };
 
-  console.log(workerData);
-
   return (
     <>
       {editMode ? (
-        <StaffForm />
-      ) : workerData ? (
+        <MaterialForm />
+      ) : materialData ? (
         <section className="px-8 py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
           <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div className="lg:grid lg:grid-cols-1 lg:gap-8 xl:gap-16">
@@ -73,25 +71,22 @@ const StaffDetail: React.FC = () => {
 
                 <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
-                <div className="flex flex-row items-start justify-between">
+                <div className="flex flex-col items-start justify-between">
+                  <div className="w-full h-40 overflow-hidden flex items-center justify-center">
+                    <img
+                      alt={materialData.name}
+                      src={
+                        materialData.image !== null
+                          ? `/materials/${materialData.image}`
+                          : "/materials/default.png"
+                      }
+                      className="mb-3 w-full"
+                    />
+                  </div>
                   <div className="flex items-center">
-                    {workerData?.image ? (
-                      <img
-                        className="w-24 h-24 rounded-full shadow-lg mr-4"
-                        src={`/workers/${workerData.image}`}
-                        alt={`${workerData?.name} ${workerData?.surname}`}
-                      />
-                    ) : (
-                      <FaUserCircle className="mb-3 rounded-full shadow-lg w-24 h-24 bg-gray-900 dark:bg-gray-100" />
-                    )}
-                    <div className="pl-6">
-                      <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                        {workerData?.name + " "} {workerData?.surname}
-                      </h1>
-                      <p className="text-gray-500 dark:text-gray-400">
-                        {workerData?.role}
-                      </p>
-                    </div>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 pt-10">
+                      {materialData?.name}
+                    </h1>
                   </div>
                   <div className="flex justify-end mt-4">
                     <Link to={`?mode=edit`}>
@@ -101,7 +96,7 @@ const StaffDetail: React.FC = () => {
                     </Link>
                     <fetcher.Form
                       method="DELETE"
-                      action={`/staff/${workerData?.id}`}
+                      action={`/staff/${materialData?.id}`}
                     >
                       <input type="hidden" name="_method" value="delete" />
                       <Button
@@ -119,12 +114,23 @@ const StaffDetail: React.FC = () => {
 
                 <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
+                <textarea
+                  className="block p-2.5 my-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 min-h-fit-content"
+                  rows={4}
+                  value={materialData?.description}
+                  readOnly
+                ></textarea>
+
+                <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+
                 <div className="grid grid-rows-2 gap-4">
-                  {workerData && workerData.tasks && workerData.tasks.length > 0 ? (
-                    <StaffTaskList tasks={workerData.tasks} />
+                  {materialData &&
+                  materialData.tasks &&
+                  materialData.tasks.length > 0 ? (
+                    <MaterialTaskList tasks={materialData.tasks} />
                   ) : (
                     <p className="text-gray-500 dark:text-gray-400">
-                      No tasks assigned.
+                      Material not used.
                     </p>
                   )}
                 </div>
@@ -143,4 +149,4 @@ const StaffDetail: React.FC = () => {
   );
 };
 
-export default StaffDetail;
+export default MaterialDetail;

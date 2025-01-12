@@ -15,6 +15,7 @@ import { Button } from "flowbite-react";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import TaskForm from "./TaskForm";
+import MaterialTaskListCard from "../materials/MaterialTaskListCard";
 
 const TaskDetail: React.FC = () => {
   const validationErrors = useActionData<ValidationErrors>();
@@ -25,9 +26,11 @@ const TaskDetail: React.FC = () => {
     (match) => match.id === "routes/_app.tasks"
   );
   console.log(matchedRoute);
-  const taskData = (matchedRoute.data.data as Task[]).find(
+  const taskData = (matchedRoute.data.tasks.data as Task[]).find(
     ({ id }) => id == params.id
   );
+
+  console.log(taskData);
 
   const [searchParams] = useSearchParams();
   const editMode = searchParams.get("mode") === "edit";
@@ -112,18 +115,41 @@ const TaskDetail: React.FC = () => {
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Description
                   </h2>
-                  <p className="mb-6 text-gray-500 dark:text-gray-400 max-h-96 overflow-auto">
-                    {taskData.description}
+                  <textarea
+                    className="block p-2.5 my-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 min-h-fit-content"
+                    readOnly
+                  >
+                    {taskData.description ? (
+                      taskData.description
+                    ) : (
+                      <strong>(No description)</strong>
+                    )}
+                  </textarea>
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Total hours:
+                  </h2>
+                  <p className="text-lg mb-6 text-gray-500 dark:text-gray-400 max-h-96 overflow-auto">
+                    {taskData.total_time + "h"}
                   </p>
                 </div>
 
                 <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
-                <div className="grid grid-rows-2">
+                <div className="flex flex-col lg:flex-row items-start justify-between gap-6">
+                  <div className="w-full lg:w-1/2">
                   <StaffTaskListCard
-                    workers={taskData.workers}
-                  ></StaffTaskListCard>
-                  {/* <MaterialTaskListCard materials={material} */}
+                    task={taskData}
+                    workersTask={taskData.workers}
+                  />
+                  </div>
+                  <div className="w-full lg:w-1/2">
+                  <MaterialTaskListCard
+                    task={taskData}
+                    materialsTask={taskData.materials}
+                  />
+                  </div>
                 </div>
               </div>
             </div>

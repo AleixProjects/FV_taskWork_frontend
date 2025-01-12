@@ -22,7 +22,7 @@ const TaskForm: React.FC = () => {
     (match) => match.id === "routes/_app.tasks"
   );
 
-  const taskData = (matchedRoute?.data?.data as Task[]).find(
+  const taskData = (matchedRoute?.data?.tasks.data as Task[]).find(
     ({ id }) => id == params.id
   ) || {
     id: false,
@@ -73,7 +73,11 @@ const TaskForm: React.FC = () => {
               </Link>
             </div>
             <Form method="post" id="task-form">
-              <input type="hidden" name="_method" value={taskData.id ? "patch" : "post"} />
+              <input
+                type="hidden"
+                name="_method"
+                value={taskData.id ? "patch" : "post"}
+              />
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div>
                   <label
@@ -303,7 +307,11 @@ const TaskForm: React.FC = () => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                {isSubmitting ? "Saving..." : taskData ? "Save Task" : "Add Task"}
+                {isSubmitting
+                  ? "Saving..."
+                  : taskData
+                  ? "Save Task"
+                  : "Add Task"}
               </Button>
             </Form>
           </div>

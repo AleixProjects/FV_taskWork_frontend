@@ -15,7 +15,7 @@ export default function TaskDetailPage() {
 
   return (
     <Modal onClose={closeHandler}>
-      <TaskDetail />
+      <TaskDetail/>
     </Modal>
   );
 }
@@ -32,11 +32,14 @@ export async function action({ request, params }: LoaderFunctionArgs) {
     end_date: formData.get("end_date") as string,
     status: formData.get("status") as string,
     total_time: formData.get("total_time") as string,
-    workers: formData.getAll("workers").map(worker => JSON.parse(worker as string) as Worker),
+    workers: formData
+      .getAll("workers")
+      .map((worker) => JSON.parse(worker as string) as Worker),
     client: JSON.parse(formData.get("client") as string) as Client,
-    materials: formData.getAll("materials").map(material => JSON.parse(material as string) as Material),
-
-  }
+    materials: formData
+      .getAll("materials")
+      .map((material) => JSON.parse(material as string) as Material),
+  };
   // console.log(method);
   if (method === "patch") {
     await updateTask(taskData, request);

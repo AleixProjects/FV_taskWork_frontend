@@ -1,8 +1,8 @@
 import { Avatar, Button, Table } from "flowbite-react";
 import { Task, RequestData } from "~/types/interfaces";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaUserCircle } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
-import { useFetcher, Link, Form } from "@remix-run/react";
+import { useFetcher, Link } from "@remix-run/react";
 import { StatusTag } from "./StatusTag";
 
 interface DataTask {
@@ -26,12 +26,14 @@ export function TasksList({ tasks }: DataTask) {
           <Table.HeadCell>Actions</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          {tasks.data ? (
+          {tasks.data.length > 0 ? (
             tasks.data.map((task: Task) => (
               <Table.Row key={task.id}>
                 <Table.Cell>{task.name}</Table.Cell>
                 <Table.Cell>
-                  {task.client === undefined ? task.client.name : "No client assigned"}
+                  {task.client !== undefined
+                    ? task.client.name
+                    : "No client assigned"}
                 </Table.Cell>
                 <Table.Cell>{task.start_date}</Table.Cell>
                 <Table.Cell>{task.end_date}</Table.Cell>
@@ -39,16 +41,25 @@ export function TasksList({ tasks }: DataTask) {
                   <StatusTag status={task.status} editable={false} />
                 </Table.Cell>
                 <Table.Cell>
-                  {task.workers?.length > 0 ? (
+                  {task.workers && task.workers.length > 0 ? (
                     <div className="flex flex-wrap gap-2">
                       <Avatar.Group>
-                        {task.workers?.map((worker) => (
+                        {task.workers.map((worker) => (
+                          worker.image ? (
                           <Avatar
                             key={worker.id}
                             img={`/worker/${worker.image}`}
                             rounded
                             stacked
+                            title={worker.name}
                           />
+                          ) : (
+                          <FaUserCircle
+                            key={worker.id}
+                            className="mb-3 rounded-full shadow-lg w-8 h-8 bg-gray-900 dark:bg-gray-100"
+                            title={worker.name + " " + worker.surname}
+                          />
+                          )
                         ))}
                       </Avatar.Group>
                     </div>

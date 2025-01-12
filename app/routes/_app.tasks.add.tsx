@@ -25,10 +25,10 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log("POST Task");
   const formData = await request.formData();
   const formattedStartDate = new Date(
-    formData.get("start_date")?.toString()
+    formData.get("start_date")?.toString() || ""
   ).toLocaleDateString("sv");
   const formattedEndDate = new Date(
-    formData.get("end_date")?.toString()
+    formData.get("end_date")?.toString() || ""
   ).toLocaleDateString("sv");
   const taskData = {
     name: formData.get("name") as string,

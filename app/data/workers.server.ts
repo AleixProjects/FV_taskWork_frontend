@@ -47,8 +47,8 @@ export async function addWorker(
   request: Request
 ): Promise<Worker> {
   console.log("Adding Worker");
-  const token = await getToken(request);
   console.log(workerData);
+  const token = await getToken(request);
 
   const response = await fetch(`${url}/workers`, {
     method: "POST",
@@ -72,6 +72,7 @@ export async function deleteWorker(
   id: string,
   request: Request
 ): Promise<void> {
+  console.log("Deleting Worker");
   const token = await getToken(request);
   const { status } = await fetch(`${url}/workers/${id}`, {
     method: "DELETE",
@@ -107,6 +108,5 @@ export async function updateWorker(
   }
 
   const data = await response.json();
-  console.log(data);
   return data;
 }

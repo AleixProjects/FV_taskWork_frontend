@@ -3,7 +3,7 @@ import { Button, Card } from "flowbite-react";
 import { Link, useFetcher } from "@remix-run/react";
 import { RequestData, Worker } from "~/types/interfaces";
 
-import { FaEdit, FaEye, FaUserCircle } from "react-icons/fa";
+import {FaEye, FaUserCircle } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 
 interface DataStaff {
@@ -42,7 +42,7 @@ export function StaffList({ workers }: DataStaff) {
                     <FaEye />
                   </Button>
                 </Link>
-                <fetcher.Form method="DELETE" action={`/staff/${worker.id}`}>
+                <fetcher.Form method="post" action={`/staff/${worker.id}`}>
                   <input type="hidden" name="_method" value="delete" />
                   <Button
                     color="failure"

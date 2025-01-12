@@ -46,7 +46,36 @@ export interface Material {
   id?: string;
   name: string;
   description: string;
-  image: string;
+  image: string | null;
+  tasks?: Task[];
+}
+
+export interface TaskWorker {
+  id?: string;
+  task: Task;
+  worker: Worker;
+  total_time: string;
+}
+
+export interface TaskMaterial {
+  id?: string;
+  task: Task;
+  material: Material;
+  total_time: string;
+}
+
+export interface TaskWorkerInput {
+  id?: string;
+  task_id: string;
+  worker_id: string;
+  total_time: string;
+}
+
+export interface TaskMaterialInput {
+  id?: string;
+  task_id: string;
+  material_id: string;
+  quantity: string;
 }
 
 export type ValidationErrors = {
@@ -62,13 +91,15 @@ export type NavItem = {
 };
 
 export interface SignupInput {
+  name?: string;
   email: string;
   password: string;
+  role?: string;
 }
 
 export interface RequestData {
   status: string;
   message: string;
-  data: string | null;
+  data: string[] | string | null;
   httpCode: number;
 }

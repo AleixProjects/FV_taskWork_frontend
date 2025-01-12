@@ -1,13 +1,15 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { TasksList } from "../components/tasks/TasksList";
-import { Task } from "~/types/interfaces";
+import { Task, Worker } from "~/types/interfaces";
 import { getTasks } from "~/data/tasks.server";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { Button } from "flowbite-react";
 import { MdAddToPhotos } from "react-icons/md";
+import { getWorkers } from "~/data/workers.server";
+import { getMaterial, getMaterials } from "~/data/materials.server";
 
 export default function Tasks() {
-  const tasks: Task[] = useLoaderData() as Task[];
+  const { tasks } = useLoaderData() as Task[];
 
   return (
     <>
@@ -30,5 +32,10 @@ export default function Tasks() {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  return await getTasks(request);
+  const data = {
+    tasks: await getTasks(request),
+    workers: await getWorkers(request),
+    materials: await getMaterials(request),
+  };
+  return data;
 }

@@ -37,6 +37,7 @@ function AuthForm() {
             </label>
             <input
               id="name"
+              name="name"
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             />

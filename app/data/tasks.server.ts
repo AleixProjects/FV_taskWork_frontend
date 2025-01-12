@@ -1,4 +1,11 @@
-import { Task } from "~/types/interfaces";
+import {
+  RequestData,
+  Task,
+  TaskMaterial,
+  TaskMaterialInput,
+  TaskWorker,
+  TaskWorkerInput,
+} from "~/types/interfaces";
 import { getToken } from "./auth.server";
 import { request } from "node_modules/axios/index.cjs";
 
@@ -100,4 +107,173 @@ export async function updateTask(
   const data = await response.json();
   console.log(data);
   return data;
+}
+
+// TASK WORKERS
+
+export async function getTaskWorkersAll(
+  request: Request
+): Promise<RequestData> {
+  const token = await getToken(request);
+  const response = await fetch(`${url}/task-workers`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Error on fetching task workers");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function addTaskWorker(
+  taskWorker: TaskWorkerInput,
+  request: Request
+): Promise<void> {
+  console.log("Adding Worker to Task");
+  const token = await getToken(request);
+  const response = await fetch(`${url}/task-workers`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskWorker),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error adding worker to task");
+  }
+
+  const data = await response.json();
+  // console.log(data);
+  return data;
+}
+
+export async function deleteTaskWorker(
+  taskWorker: TaskWorkerInput,
+  request: Request
+): Promise<void> {
+  console.log("Deleting Worker from Task");
+  const token = await getToken(request);
+
+  const taskWorkersAll: RequestData = await getTaskWorkersAll(request);
+
+  const taskWorkerToDelete: TaskWorker = taskWorkersAll.data?.find(
+    (taskWorkerFind: TaskWorker) =>
+      taskWorkerFind.task.id == taskWorker.task_id &&
+      taskWorkerFind.worker.id == taskWorker.worker_id
+  );
+
+  // console.log(taskWorkerToDelete);
+
+  if (!taskWorkerToDelete) {
+    console.error("Error deleting worker from task");
+    throw new Error("Failed to delete worker from task.");
+  }
+
+  const { status } = await fetch(
+    `${url}/task-workers/${taskWorkerToDelete.id}}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!status) {
+    console.error("Error deleting worker from task");
+    throw new Error("Failed to delete worker from task.");
+  }
+}
+
+// TASK MATERIALS
+
+export async function getTaskMaterialsAll(
+  request: Request
+): Promise<RequestData> {
+  const token = await getToken(request);
+  const response = await fetch(`${url}/task-materials`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Error on fetching task materials");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function addTaskMaterial(
+  taskMaterial: TaskMaterialInput,
+  request: Request
+): Promise<void> {
+  console.log("Adding Material to Task");
+  const token = await getToken(request);
+  const response = await fetch(`${url}/task-materials`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskMaterial),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error adding material to task");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function deleteTaskMaterial(
+  taskMaterial: TaskMaterialInput,
+  request: Request
+): Promise<void> {
+  console.log("Deleting Material from Task");
+  const token = await getToken(request);
+
+  const taskMaterialsAll: RequestData = await getTaskMaterialsAll(request);
+
+  const taskMaterialToDelete: TaskMaterial = taskMaterialsAll.data?.find(
+    (taskMaterialFind: TaskMaterial) =>
+      taskMaterialFind.task.id == taskMaterial.task_id &&
+      taskMaterialFind.material.id == taskMaterial.material_id
+  );
+  console.log("taskMaterialToDelete");
+  console.log(taskMaterialToDelete);
+
+  if (!taskMaterialToDelete) {
+    console.error("Error deleting material from task");
+    throw new Error("Failed to delete material from task.");
+  }
+
+  const { status } = await fetch(
+    `${url}/task-materials/${taskMaterialToDelete.id}}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!status) {
+    console.error("Error deleting material from task");
+    throw new Error("Failed to delete material from task.");
+  }
 }

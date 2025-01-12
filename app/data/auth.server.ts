@@ -38,6 +38,46 @@ export async function helloWorld() {
   return {};
 }
 
+export async function signup({ name, email, password, role }: SignupInput) {
+  try {
+    console.log(name);
+    const response = await axios.post(
+      `${url}/register`,
+      {
+        name,
+        email,
+        password,
+        role,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log(response);
+
+    if (response.status === 201 && response.data?.token) {
+      const user = response.data.user;
+      const token = response.data.token;
+
+      return await createUserSession(user, token);
+    } else {
+      const valErr: TypeErrors = {
+        name: "Invalid signup credentials",
+        code: "401",
+      };
+      throw valErr;
+    }
+  } catch (error) {
+    console.error("Signup error:", error);
+    throw new Error("Error on signup");
+  }
+}
+
 export async function login({ email, password }: SignupInput) {
   // console.log("login");
   // console.log(url);
