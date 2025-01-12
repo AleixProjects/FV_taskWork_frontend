@@ -39,8 +39,9 @@ export async function helloWorld() {
 }
 
 export async function signup({ name, email, password, role }: SignupInput) {
+  console.log("signup");
+  // console.log(name);
   try {
-    console.log(name);
     const response = await axios.post(
       `${url}/register`,
       {
@@ -60,9 +61,11 @@ export async function signup({ name, email, password, role }: SignupInput) {
 
     console.log(response);
 
-    if (response.status === 201 && response.data?.token) {
+    if (response.data.httpCode === 201 && response.data?.token) {
       const user = response.data.user;
       const token = response.data.token;
+
+      console.log(user);
 
       return await createUserSession(user, token);
     } else {

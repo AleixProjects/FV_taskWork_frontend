@@ -1,4 +1,5 @@
 import { ActionFunctionArgs } from "@remix-run/node";
+import { c } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 import AuthForm from "~/components/Auth/AuthForm";
 import { helloWorld, login, signup } from "~/data/auth.server";
 import { validateCredentials } from "~/data/validations.server";
@@ -14,7 +15,7 @@ export default function AuthPage() {
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const searchParams = new URL(request.url).searchParams;
-  const authMode = searchParams.get("authMode") || "login";
+  const authMode = searchParams.get("mode") || "login";
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -34,7 +35,7 @@ export async function action({ request }: ActionFunctionArgs) {
       // Autenticació (login)
       return await login({ email, password });
       //   return await helloWorld();
-    } else {
+    } else if (authMode === "signup") {
       // Creació d'usuari (signup)
       return await signup({ name, email, password, role });
     }
