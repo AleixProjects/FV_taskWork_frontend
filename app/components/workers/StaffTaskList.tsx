@@ -9,29 +9,29 @@ interface StaffTaskListProps {
 
 const StaffTaskList: React.FC<StaffTaskListProps> = ({ tasks }) => {
     return (
-        <div>
-            <h2>Workers Task List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tasks.map(task => (
-                        <tr key={task.id} tabIndex={0} aria-label={`Task ${task.id}`}>
-                            <td>{task.id}</td>
-                            <td>{task.name}</td>
-                            <td>{task.description}</td>
-                            <td>{task.status}</td>
+            <div>
+                <h2>Workers Task List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Status</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {tasks.map(task => (
+                            <tr key={task.id} tabIndex={0} aria-label={`Task ${task.id}`}>
+                                <td>{task.id}</td>
+                                <td>{task.name}</td>
+                                <td>{task.description}</td>
+                                <td>{task.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
     );
 };
 
