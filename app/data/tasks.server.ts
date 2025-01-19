@@ -7,7 +7,6 @@ import {
   TaskWorkerInput,
 } from "~/types/interfaces";
 import { getToken } from "./auth.server";
-import { request } from "node_modules/axios/index.cjs";
 
 const url = process.env.API_URL;
 // const token = localStorage.getItem("token");
@@ -32,7 +31,8 @@ export async function getTasks(request: Request): Promise<Task[]> {
 }
 
 //Show selected task
-export async function getTask(id: string): Promise<Task[]> {
+export async function getTask(id: string, request: Request): Promise<Task[]> {
+  const token = await getToken(request);
   const response = await fetch(`${url}/tasks/${id}`, {
     method: "GET",
     headers: {

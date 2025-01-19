@@ -2,7 +2,10 @@ import flowbite from "flowbite-react/tailwind";
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}", flowbite.content(),],
+  content: [
+    "./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}",
+    flowbite.content(),
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -19,6 +22,9 @@ export default {
       },
     },
   },
-  plugins: [flowbite.plugin(),],
+  plugins: [
+    require("flowbite/plugin")({
+      charts: true,
+    }),
+  ],
 } satisfies Config;
-

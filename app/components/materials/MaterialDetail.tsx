@@ -14,6 +14,7 @@ import { Button } from "flowbite-react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import MaterialTaskList from "./MaterialTaskList";
 
 const MaterialDetail = () => {
   const validationErrors = useActionData<ValidationErrors>();
@@ -120,7 +121,8 @@ const MaterialDetail = () => {
                   {materialData &&
                   materialData.tasks &&
                   materialData.tasks.length > 0 ? (
-                    <MaterialTaskList tasks={materialData.tasks} />
+                    // <MaterialTaskList tasks={materialData.tasks} />
+                    <>material</>
                   ) : (
                     <p className="text-gray-500 dark:text-gray-400">
                       Material not used.
