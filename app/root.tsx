@@ -1,20 +1,25 @@
 import {
+  isRouteErrorResponse,
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 
 import "./tailwind.css";
+import ErrorBoundary from "./components/Utils/ErrorBoundary";
 
 const brandName = process.env.BRAND_NAME || "NotTitle";
 
-export const meta: MetaFunction = () => {
-  // console.log("brandName", brandName);
-  return [{ title: { brandName } }];
-};
+export const meta: MetaFunction = () => [
+  { charset: "utf-8" },
+  { title: brandName },
+  { viewport: "width=device-width,initial-scale=1" },
+];
 
 export const links: LinksFunction = () => {
   return [
@@ -35,6 +40,11 @@ export const links: LinksFunction = () => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return <ErrorBoundary error={error} />;
+  }
+
   return (
     <html lang="en">
       <head>
@@ -48,6 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
     </html>
@@ -55,5 +66,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
 }

@@ -14,7 +14,7 @@ const StaffTaskListCard: React.FC<StaffTaskListCardProps> = ({
   workersTask,
   task,
 }) => {
-  const [handleDropdown, setHandleDropdown] = useState(false);
+  const [handleDropdown, setHandleDropdown] = useState(true);
   const toggleDropdown = () => {
     setHandleDropdown(!handleDropdown);
   };
